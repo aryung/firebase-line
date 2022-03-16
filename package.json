@@ -1,0 +1,41 @@
+{
+  "name": "firebase-line",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "gcp-build": "npm i",
+    "start": "npx functions-framework --target=lineOauth --signature=http",
+    "dev:https": "npx ngrok http 8888",
+    "dev:oauth": "npx functions-framework --target=oath --signature=http --port=8888",
+    "dev:token": "npx functions-framework --target=token --signature=http --port=8888"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aryung/fireabse-line.git"
+  },
+  "author": "readygo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aryung/firebase-line/issues"
+  },
+  "homepage": "https://github.com/aryung/firebase-line#readme",
+  "devDependencies": {
+    "@google-cloud/functions-framework": "^1.7.1",
+    "data.task": "^3.1.2",
+    "jest": "^26.6.3",
+    "ngrok": "^3.4.1"
+  },
+  "dependencies": {
+    "@google-cloud/logging-winston": "^4.0.4",
+    "axios": "^0.21.1",
+    "bs58": "^4.0.1",
+    "env-cmd": "^10.1.0",
+    "firebase-admin": "^9.7.0",
+    "jsonwebtoken": "^8.5.1",
+    "ramda": "^0.27.1",
+    "urlencode": "^1.1.0",
+    "winston": "^3.3.3",
+    "yaml2json": "^1.0.2"
+  }
+}
