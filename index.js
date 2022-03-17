@@ -7,7 +7,7 @@ exports.oauth = async (req, res) => {
   try {
     let { data: respData } = await axios({
       "method": "POST",
-      "url": LINE_ISSUE_TOKE_ENDPOINT,
+      "url": process.env.LINE_ISSUE_TOKE_ENDPOINT,
       "headers": {
         "Content-Type": "application/x-www-form-urlencoded"
       },
