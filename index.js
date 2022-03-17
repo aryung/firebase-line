@@ -2,6 +2,7 @@ const urlencode = require('urlencode')
 const axios = require('axios')
 const jwt = require('jsonwebtoken')
 const { getFirebaseUser } = require('./src/lib/oauth')
+require('dotenv').config()
 
 exports.oauth = async (req, res) => {
   try {
@@ -11,7 +12,7 @@ exports.oauth = async (req, res) => {
       "headers": {
         "Content-Type": "application/x-www-form-urlencoded"
       },
-      "data": `grant_type=authorization_code&code=${req.query.code}&redirect_uri=${urlencode(LINE_REDIRECT_URI)}&client_id=${LINE_CHANNEL_ID}&client_secret=${LINE_CHANNEL_SECRET}`
+      "data": `grant_type=authorization_code&code=${req.query.code}&redirect_uri=${urlencode(process.env.LINE_REDIRECT_URI)}&client_id=${process.env.LINE_CHANNEL_ID}&client_secret=${process.env.LINE_CHANNEL_SECRET}`
     })
     let { access_token, expires_in, id_token, refresh_token, scope, token_type } = respData
     let { name, picture, email, sub: userId } = jwt.decode(id_token, LINE_NONCE)
