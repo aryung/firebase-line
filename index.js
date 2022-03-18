@@ -6,6 +6,7 @@ require('dotenv').config()
 
 exports.oauth = async (req, res) => {
   try {
+    console.log({ code: req.query.code })
     let { data: respData } = await axios({
       "method": "POST",
       "url": process.env.LINE_ISSUE_TOKE_ENDPOINT,
@@ -17,12 +18,13 @@ exports.oauth = async (req, res) => {
     let { access_token, expires_in, id_token, refresh_token, scope, token_type } = respData
     let { name, picture, email, sub: userId } = jwt.decode(id_token, LINE_NONCE)
     const token = await getFirebaseUser({ id: userId, uid: userId, name, picture, email })
+    console.log({ token, data })
 
     res.redirect(`${process.env.LINE_REDIRECT_URI_AFTER_TOKEN}/?token=${token}`)
 
   } catch (err) {
 
-    console.log('main err', err)
+    console.log(JSON.stringify(err))
     res.status(500).end()
 
   }
